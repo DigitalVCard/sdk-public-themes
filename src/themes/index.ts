@@ -1,4 +1,5 @@
-import sdp from './sdp';
+import paralel from './sdp';
+import simple from './simple';
 
 // import
-export const themes = [sdp];
+export const themes = { paralel, simple };

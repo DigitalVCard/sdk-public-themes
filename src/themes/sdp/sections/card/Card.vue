@@ -11,9 +11,9 @@
           ></g-icon>
           Ciudad, Pais
         </div>
-        <!-- <div class="px-2">
+        <div class="px-2">
           <card-actions :actions="actions"></card-actions>
-        </div> -->
+        </div>
       </div>
     </template>
   </g-scroll-content>
@@ -25,7 +25,7 @@ import CardAvatar from './CardAvatar.vue';
 import CardNames from './CardNames.vue';
 import CardActions from './CardActions.vue';
 import CardRedes from './CardRedes.vue';
-import { useHelpers } from '../../../../use';
+import { useHelpers } from '@/use';
 export default defineComponent({
   components: { CardAvatar, CardNames, CardActions },
 
