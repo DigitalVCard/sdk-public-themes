@@ -1,4 +1,29 @@
 {
   "namespace": "gix",
-  "themes": ["simple", "paralel"]
+  "themes": ["simple", "paralel", "shape", "izi-basic", "izi-normal"],
+  "options": {
+    "shape": {
+      "settings": [
+        {
+          "label": "Tipo",
+          "name": "mode",
+          "widget": "select",
+          "options": ["normal", "invert"]
+        }
+      ],
+      "card": [
+        {
+          "label": "Forma de foto",
+          "name": "shape",
+          "widget": "select",
+          "options": [
+            { "label": "Cuadrado", "value": "square" },
+            { "label": "Circulo", "value": "circle" },
+            { "label": "Hexagono", "value": "hexagon" },
+            { "label": "Escudo", "value": "shield" }
+          ]
+        }
+      ]
+    }
+  }
 }

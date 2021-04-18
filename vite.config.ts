@@ -5,7 +5,9 @@ import WindiCSS from 'vite-plugin-windicss';
 
 import path from 'path';
 const theme = process.env.THEME;
-if (!theme) throw new Error('No theme env');
+const isProd = process.env.NODE_ENV === 'production';
+
+if (isProd && !theme) throw new Error('No theme env');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,7 +21,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, `src/lib/${theme}.ts`),
-      name: `themes.${manifest.namespace}`,
+      name: `themes.${manifest.namespace}-${theme}`,
       formats: ['umd']
     },
 
