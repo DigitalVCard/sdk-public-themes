@@ -1,29 +1,43 @@
 {
   "namespace": "gix",
-  "themes": ["simple", "paralel", "shape", "izi-basic", "izi-normal"],
-  "options": {
+  "themes": {
+    "simple": {
+      "extend": "basic",
+      "omit": ["card.actions"]
+    },
+    "paralel": {
+      "extend": "basic"
+    },
     "shape": {
-      "settings": [
-        {
-          "label": "Tipo",
-          "name": "mode",
-          "widget": "select",
-          "options": ["normal", "invert"]
+      "extend": "basic",
+      "fields": {
+        "settings": {
+          "mode": {
+            "label": "Tipo",
+            "widget": "select",
+            "options": ["normal", "invert"]
+          }
+        },
+        "card": {
+          "shape": {
+            "label": "Forma de foto",
+            "name": "shape",
+            "widget": "select",
+            "options": [
+              { "label": "Cuadrado", "value": "square" },
+              { "label": "Circulo", "value": "circle" },
+              { "label": "Hexagono", "value": "hexagon" },
+              { "label": "Escudo", "value": "shield" }
+            ]
+          }
         }
-      ],
-      "card": [
-        {
-          "label": "Forma de foto",
-          "name": "shape",
-          "widget": "select",
-          "options": [
-            { "label": "Cuadrado", "value": "square" },
-            { "label": "Circulo", "value": "circle" },
-            { "label": "Hexagono", "value": "hexagon" },
-            { "label": "Escudo", "value": "shield" }
-          ]
-        }
-      ]
+      }
+    },
+    "izi-basic": {
+      "extend": "basic"
+    },
+    "izi-normal": {
+      "extend": "basic"
     }
   }
 }
