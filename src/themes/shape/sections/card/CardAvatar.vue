@@ -89,15 +89,15 @@
       <div class="text-center pt-2"></div>
 
       <div class="pt-3 pb-6 text-center">
-        <a :href="'/'" download>
+        <router-link :to="link">
           <g-button
             class="elevation-6 p-button-text border-none text-lg rounded-lg"
             :style="styles.section"
             :class="styles.text"
           >
-            Portafolio
+            {{ button }}
             <g-icon icon="mdi:chevron-right" class="ml-2"></g-icon> </g-button
-        ></a>
+        ></router-link>
       </div>
     </div>
   </div>
@@ -142,6 +142,7 @@ export default defineComponent({
         bgText: ['text-white']
       }
     };
+    const link = (themeOptions.shape?.link || '#/').split('#')[1] || '/';
     return {
       bgStyle,
       colors,
@@ -149,6 +150,8 @@ export default defineComponent({
       bgGradient,
       mode: 'normal',
       shape: themeOptions.shape?.shape || 'shield',
+      button: themeOptions.shape?.button || 'portafolio',
+      link,
       redes,
       myCardInfo,
       photo: myCardInfo.photo

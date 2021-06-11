@@ -1,16 +1,18 @@
 <template>
-  <div class="justify-center flex">
-    <card-actions-button
-      class="flex-1"
-      v-for="item in items"
-      :actions="actions"
-      :type="item.type"
-      :text="item.text"
-      :icon="icons[item.type] || `mdi:${item.type}`"
-      :href="item.href"
-      :customClass="item.customClass"
-    >
-    </card-actions-button>
+  <div class="pt-2px px-2px">
+    <div class="justify-center flex space-x-2px">
+      <card-actions-button
+        class="flex-1"
+        v-for="item in items"
+        :actions="actions"
+        :type="item.type"
+        :text="item.text"
+        :icon="icons[item.type] || `mdi:${item.type}`"
+        :href="item.href"
+        :customClass="item.customClass"
+      >
+      </card-actions-button>
+    </div>
   </div>
 </template>
 
@@ -65,7 +67,7 @@ export default defineComponent({
           //
           return {
             ...v,
-            customClass: [ix === 0 ? 'bg-primary' : `bg-primary-darken${ix}`]
+            customClass: 'bg-primary'
           };
         })
         .reverse();

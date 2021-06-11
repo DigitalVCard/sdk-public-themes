@@ -29,6 +29,18 @@
               { "label": "Hexagono", "value": "hexagon" },
               { "label": "Escudo", "value": "shield" }
             ]
+          },
+          "button": {
+            "label": "Texto de boton",
+            "widget": "string",
+            "required": false,
+            "name": "button"
+          },
+          "link": {
+            "label": "Link del boton",
+            "widget": "string",
+            "required": false,
+            "name": "link"
           }
         }
       }
@@ -37,6 +49,9 @@
       "extend": "basic"
     },
     "izi-normal": {
+      "extend": "basic"
+    },
+    "material-basic": {
       "extend": "basic"
     }
   }
