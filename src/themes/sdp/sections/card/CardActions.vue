@@ -1,38 +1,20 @@
 <template>
   <div class="p-3 flex justify-center flex-wrap">
     <card-actions-button
-      :actions="actions"
+      v-for="(action, key) in actions.others"
+      :key="key"
+      :action="action"
       type="phone"
       text="Trabajo"
-      icon="phone"
-      :href="(v) => `tel:${v}`"
-    ></card-actions-button
-    ><card-actions-button
-      :actions="actions"
-      type="cellphone"
-      text="Celular"
-      icon="cellphone"
-      :href="(v) => `tel:${v}`"
-    ></card-actions-button>
-
-    <card-actions-button
-      :actions="actions"
-      type="whatsapp"
-      text="Whatsapp"
-      icon="whatsapp"
-      :href="(v) => `https://api.whatsapp.com/send?phone=${v}`"
-    ></card-actions-button
-    ><card-actions-button
-      :actions="actions"
-      type="email"
-      text="Email"
-      icon="email-outline"
-      :href="(v) => `mailto:${v}`"
+      :icon="action.icon"
+      :onAction="routeActions[action.type]"
+      :href="hrefActions[action.type]"
     ></card-actions-button>
   </div>
 </template>
 
 <script lang="ts">
+import { useHelpers } from '@/use';
 import { defineComponent } from 'vue';
 import CardActionsButton from './CardActionsButton.vue';
 export default defineComponent({
@@ -42,6 +24,11 @@ export default defineComponent({
       type: Object,
       required: true
     }
+  },
+  setup() {
+    const { useActions } = useHelpers();
+    const { hrefActions, routeActions } = useActions();
+    return { hrefActions, routeActions };
   }
 });
 </script>

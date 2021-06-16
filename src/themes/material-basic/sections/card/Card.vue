@@ -1,5 +1,5 @@
 <template>
-  <g-scroll-content class="h-full relative z-1 bg-gray-50">
+  <g-scroll-content class="h-full relative z-1 bg-white">
     <template #body>
       <div class="overflow-hidden">
         <card-avatar :photo="myCardInfo.photo" :backgroundImage="bgImage">
@@ -16,16 +16,13 @@
           <div class="flex text-sm">
             <div class="w-3/12"></div>
             <div class="w-9/12 pr-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita,
-              quisquam. Quaerat sit quod sed nisi quas, quam numquam, aut est
-              tempore, pariatur fugit rerum aliquid ratione illum molestiae
-              facere repudiandae?
+              {{ myCardInfo.description }}
             </div>
           </div>
         </div>
         <card-items :actions="actions"></card-items>
 
-        <div class="text-center bg-gray-50 pt-4">
+        <div class="text-center bg-white pt-4">
           <div class="pt-8 pb-6">
             <g-button
               color="primary"

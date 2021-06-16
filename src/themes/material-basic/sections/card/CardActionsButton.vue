@@ -1,14 +1,22 @@
 <template>
-  <div class="text-center" v-if="actions[type] && actions[type].show">
-    <a :href="href(actions[type].value)" target="_blank">
+  <div class="text-center" v-if="!action.hide">
+    <a
+      :href="href?.(action.value)"
+      @click="onAction(action.value)"
+      target="_blank"
+    >
       <g-button
         icon="pi"
         class="h-22 w-full flex flex-col items-center justify-center border-none p-button-text p-button-plain rounded-none"
         :class="customClass"
       >
-        <g-icon :icon="icon" class="text-white"></g-icon>
-        <div class="text-sm pt-1 text-white font-medium uppercase">
-          {{ text }}
+        <g-text-color>
+          <g-icon :icon="icon" class=""></g-icon>
+        </g-text-color>
+        <div class="text-sm pt-1 font-medium uppercase">
+          <g-text-color>
+            {{ text }}
+          </g-text-color>
         </div>
       </g-button></a
     >
@@ -26,13 +34,18 @@ export default defineComponent({
     },
     href: {
       type: Function,
-      required: true
+      default: () => undefined
+      // required: true
+    },
+    onAction: {
+      type: Function,
+      default: () => void 0
     },
     text: String,
     customClass: [String, Array],
     icon: { type: String, required: true },
-    actions: {
-      type: Object as PropType<Record<string, Value>>,
+    action: {
+      type: Object,
       required: true
     }
   }

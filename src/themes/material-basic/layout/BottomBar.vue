@@ -9,7 +9,9 @@
         icon="pi"
         class="rounded-full h-14 w-14 flex items-center justify-center bg-secondary border-none elevation-3 p-button-text p-button-plain"
       >
-        <g-icon :icon="'mdi:account-plus'" class="text-white"></g-icon>
+        <g-text-color secondary>
+          <g-icon :icon="'mdi:account-plus'"></g-icon>
+        </g-text-color>
       </g-button>
     </a>
 

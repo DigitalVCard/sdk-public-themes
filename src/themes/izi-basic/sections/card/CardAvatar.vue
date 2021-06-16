@@ -4,7 +4,7 @@
     class="flex flex-col justify-center items-center mx-auto bg-primary elevation-1 bg-cover bg-center"
     :style="bgStyle"
   >
-    <div class="z-10 py-8 w-full h-full flex justify-center blur">
+    <div class="z-10 py-16 w-full h-full flex justify-center blur">
       <div class="h-42 w-42 elevation-2 rounded-full overflow-hidden">
         <img :src="photo" alt="" />
       </div>

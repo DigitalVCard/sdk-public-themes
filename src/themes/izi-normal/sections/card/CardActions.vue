@@ -1,15 +1,15 @@
 <template>
   <div class="justify-center">
     <card-actions-button
-      v-for="item in items"
-      :actions="actions"
-      :type="item.type"
-      :text="item.text"
-      :icon="icons[item.type] || `mdi:${item.type}`"
-      :href="item.href"
-      :customClass="item.customClass"
-    >
-    </card-actions-button>
+      v-for="(action, key) in items"
+      :key="key"
+      :action="action"
+      :text="action.title"
+      :icon="action.icon"
+      :onAction="routeActions[action.type]"
+      :href="hrefActions[action.type]"
+      :customClass="action.customClass"
+    />
   </div>
 </template>
 
@@ -26,43 +26,20 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const { useTheme } = useHelpers();
+    const { useTheme, useActions } = useHelpers();
+    const { hrefActions, routeActions } = useActions();
+
     const { icons } = useTheme();
     const items = computed(() => {
-      return [
-        {
-          type: 'phone',
-          text: 'Trabajo',
-          href: (v) => `tel:${v}`
-        },
-        {
-          type: 'cellphone',
-          text: 'Celular',
-          href: (v) => `tel:${v}`
-        },
-        {
-          type: 'whatsapp',
-          text: 'Whatsapp',
-          href: (v) => `https://api.whatsapp.com/send?phone=${v}`
-        },
-        {
-          type: 'email',
-          text: 'Email',
-          href: (v) => `mailto:${v}`
-        }
-      ]
-        .filter((v) => {
-          return props.actions?.[v.type] && props.actions?.[v.type]?.show;
-        })
-        .map((v, ix) => {
-          //
-          return {
-            ...v,
-            customClass: [`bg-secondary-darken${ix + 1}`]
-          };
-        });
+      return [...props.actions.others].map((v, ix) => {
+        //
+        return {
+          ...v,
+          customClass: [`bg-secondary-darken${ix + 1}`]
+        };
+      });
     });
-    return { icons, items };
+    return { icons, items, hrefActions, routeActions };
   }
 });
 </script>

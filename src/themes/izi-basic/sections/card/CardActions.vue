@@ -1,14 +1,16 @@
 <template>
-  <div class="justify-center flex">
+  <div class="justify-center flex bg-gray-50">
     <card-actions-button
       class="flex-1"
-      v-for="item in items"
-      :actions="actions"
-      :type="item.type"
-      :text="item.text"
-      :icon="icons[item.type] || `mdi:${item.type}`"
-      :href="item.href"
-      :customClass="item.customClass"
+      v-for="(action, key) in items"
+      :key="key"
+      :action="action"
+      type="phone"
+      :text="action.title"
+      :icon="action.icon"
+      :onAction="routeActions[action.type]"
+      :href="hrefActions[action.type]"
+      :customClass="action.customClass"
     >
     </card-actions-button>
   </div>
@@ -27,39 +29,13 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const { useTheme } = useHelpers();
+    const { useTheme, useActions } = useHelpers();
+    const { hrefActions, routeActions } = useActions();
+
     const { icons } = useTheme();
     const items = computed(() => {
-      return [
-        {
-          type: 'phone',
-          text: 'Trabajo',
-          href: (v: unknown) => `tel:${v}`
-        },
-        {
-          type: 'cellphone',
-          text: 'Celular',
-          href: (v: unknown) => `tel:${v}`
-        },
-        {
-          type: 'whatsapp',
-          text: 'Whatsapp',
-          href: (v: unknown) => `https://api.whatsapp.com/send?phone=${v}`
-        },
-        {
-          type: 'email',
-          text: 'Email',
-          href: (v: unknown) => `mailto:${v}`
-        },
-        {
-          type: 'address',
-          text: 'Dirección',
-          href: (v: '') => v
-        }
-      ]
-        .filter((v) => {
-          return props.actions?.[v.type] && props.actions?.[v.type]?.show;
-        })
+      return [...props.actions.others]
+
         .reverse()
         .map((v, ix) => {
           //
@@ -70,7 +46,7 @@ export default defineComponent({
         })
         .reverse();
     });
-    return { icons, items };
+    return { icons, items, hrefActions, routeActions };
   }
 });
 </script>

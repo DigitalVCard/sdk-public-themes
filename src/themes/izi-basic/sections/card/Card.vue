@@ -1,5 +1,5 @@
 <template>
-  <g-scroll-content class="h-full relative z-1 bg-gray-50">
+  <g-scroll-content class="h-full relative z-1 bg-white">
     <template #body>
       <div class="overflow-hidden">
         <card-avatar
@@ -13,7 +13,7 @@
         ></card-names>
         <card-actions :actions="actions"></card-actions>
 
-        <div class="text-center bg-gray-50 pt-4">
+        <div class="text-center bg-white pt-4">
           <div class="pt-8 pb-6">
             <g-button
               color="primary"
