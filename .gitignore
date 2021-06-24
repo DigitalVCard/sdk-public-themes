@@ -1,0 +1,41 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+
+pids
+logs
+results
+tmp
+
+
+# Coverage reports
+coverage
+
+# API keys and secrets
+.env
+.temp
+.flow
+# Dependency directory
+node_modules
+bower_components
+/static/assets
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+dist
+build
+# Ignore built ts files
+
+
+# Local Netlify folder
+.netlify
