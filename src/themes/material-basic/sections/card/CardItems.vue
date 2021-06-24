@@ -8,37 +8,44 @@
       >
         <div class="w-3/12 text-center text-xl">
           <g-icon
-            :icon="icons[item.type] || `mdi:${item.type}`"
+            :icon="item.icon || `mdi:${item.type}`"
             class="text-gray-400 inline-block"
           ></g-icon>
         </div>
-        <div class="w-9/12 pr-2 text-base border-b-1px border-gray-300 py-4">
+        <div
+          v-if="item.type !== 'address'"
+          class="w-9/12 pr-2 text-base border-b-1px border-gray-300 py-4"
+        >
           <div class="font-bold">
-            {{ item?.action.value }}
+            {{ item.value }}
           </div>
           <div>
-            {{ item.text }}
+            {{ item.title }}
+          </div>
+        </div>
+        <div
+          v-else
+          class="w-9/12 pr-2 text-base border-b-1px border-gray-300 py-4"
+        >
+          <div class="whitespace-pre-line">
+            {{ item.description }}
+          </div>
+          <div>
+            <a :href="item.value" target="_blank">
+              <span class="uppercase text-blue-500"> Ver en mapa </span>
+            </a>
           </div>
         </div>
       </div>
-      <div class="flex items-center text-sm" v-if="actions?.['address']">
+      <!-- <div class="flex items-center text-sm" v-if="actions?.['address']">
         <div class="w-3/12 text-center text-xl">
           <g-icon
             :icon="icons['address']"
             class="text-gray-400 inline-block"
           ></g-icon>
         </div>
-        <div class="w-9/12 pr-2 text-base border-b-1px border-gray-300 py-4">
-          <div class="whitespace-pre-line">
-            {{ actions?.['address']?.address }}
-          </div>
-          <div>
-            <a :href="actions?.['address']?.value">
-              <span class="uppercase text-blue-500"> Ver en mapa </span>
-            </a>
-          </div>
-        </div>
-      </div>
+     
+      </div> -->
       <!-- <div
         class="flex-1"
         v-for="item in items"
@@ -71,42 +78,24 @@ export default defineComponent({
     const { useTheme } = useHelpers();
     const { icons } = useTheme();
     const items = computed(() => {
-      return [
-        {
-          type: 'phone',
-          text: 'Trabajo',
-          href: (v: unknown) => `tel:${v}`
-        },
-        {
-          type: 'cellphone',
-          text: 'Celular',
-          href: (v: unknown) => `tel:${v}`
-        },
-        {
-          type: 'whatsapp',
-          text: 'Whatsapp',
-          href: (v: unknown) => `https://api.whatsapp.com/send?phone=${v}`
-        },
-        {
-          type: 'email',
-          text: 'Email',
-          href: (v: unknown) => `mailto:${v}`
-        }
-        // {
-        //   type: 'address',
-        //   text: 'Dirección',
-        //   href: (v: '') => v
-        // }
-      ]
-        .filter((v) => {
-          return props.actions?.[v.type] && props.actions?.[v.type]?.show;
+      return [...props.actions?.others]
+        .filter((action) => {
+          if (!action.value) {
+            return false;
+          } else if (action.value === '0') {
+            return false;
+          } else if (action.value === '/') {
+            return false;
+          } else {
+            return true;
+          }
+          // return
         })
         .reverse()
         .map((v, ix) => {
           //
           return {
             ...v,
-            action: props.actions?.[v.type],
             customClass: 'bg-primary'
           };
         })

@@ -15,7 +15,7 @@
       </g-button> -->
     </div>
     <div class="flex-auto"></div>
-    <div class="py-1">
+    <div class="py-1" v-if="!hideLogo">
       <img :src="images.logo" style="max-height: 42px" />
     </div>
     <div class="flex-auto"></div>
@@ -45,7 +45,11 @@
         }
       "
     >
-      <div class="text-xs font-medium">{{ item.name }}</div>
+      <div class="text-xs font-medium">
+        <g-text-color>
+          {{ item.name }}
+        </g-text-color>
+      </div>
     </g-button>
   </div>
 </template>
@@ -60,11 +64,21 @@ export default defineComponent({
       useStates,
       useSettings,
       useTheme,
-      useSections
+      useSections,
+      useMyCard
     } = useHelpers();
     // const { info, imgLogo, isDark } = useCard();
     const { sections } = useSections();
     const { images, icons } = useTheme();
+    const { themeOptions } = useMyCard();
+    let hideLogo = false;
+    if (themeOptions.basic?.hideLogo) {
+      hideLogo = true;
+    }
+    // console.log(themeOptions);
+
+    // if (themeOptions?.basic?.background?.show) {
+    // }
     const { info } = useSettings();
     const state = useStates();
     const { toogleMenu, toogleQrCode } = useActions();
@@ -74,6 +88,7 @@ export default defineComponent({
       items: sections,
       state,
       info,
+      hideLogo,
       toogleMenu,
       toogleQrCode,
       images,

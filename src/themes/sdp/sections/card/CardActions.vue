@@ -28,6 +28,8 @@ export default defineComponent({
   setup() {
     const { useActions } = useHelpers();
     const { hrefActions, routeActions } = useActions();
+    // console.log(hrefActions);
+
     return { hrefActions, routeActions };
   }
 });

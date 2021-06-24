@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center relative">
-    <div class="w-12 absolute md:fixed top-0 left-3 z-50">
+    <div class="w-12 absolute top-0 left-3 z-50">
       <g-button
         v-if="showMenu"
         icon="pi"

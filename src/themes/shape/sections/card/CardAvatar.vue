@@ -62,27 +62,20 @@
       <div class="w-full flex pt-6">
         <div class="flex flex-col items-baseline mx-auto">
           <div v-for="(red, key) in redes" :key="key" class="px-0">
-            <a :href="red.url" target="_blank">
-              <g-button
-                class="p-button-text p-button-plain bg-transparent"
-                :class="styles.bgText"
-                rel="noopener noreferrer"
-              >
-                <img
-                  width="28"
-                  v-if="red.media?.image"
-                  :src="red.media.image"
-                />
-                <g-icon
-                  size="22"
-                  v-else-if="red.media?.icon"
-                  :icon="red.media.icon"
-                />
-                <div class="pl-3">
-                  {{ red.name }}
-                </div>
-              </g-button>
-            </a>
+            <g-social-red :data="red" v-slot:default="{ icon, href }">
+              <a :href="href" target="_blank">
+                <g-button
+                  class="p-button-text p-button-plain bg-transparent"
+                  :class="styles.bgText"
+                  rel="noopener noreferrer"
+                >
+                  <g-icon size="22" :icon="red?.media?.icon || icon" />
+                  <div class="pl-3">
+                    {{ red.name }}
+                  </div>
+                </g-button>
+              </a>
+            </g-social-red>
           </div>
         </div>
       </div>
@@ -117,12 +110,6 @@ export default defineComponent({
     const colors = useColors();
     const myCardInfo = info || {};
 
-    const bgStyle = props.backgroundImage
-      ? {
-          backgroundImage: `url(${props.backgroundImage})`,
-          backgroundAttachment: 'initial'
-        }
-      : {};
     const bgGradient = {
       background: `linear-gradient(315deg, ${colors['primary-darken4']} 0%, ${colors['primary-darken2']} 20%, ${colors.primary} 100%)`
     };
@@ -144,7 +131,6 @@ export default defineComponent({
     };
     const link = (themeOptions.shape?.link || '#/').split('#')[1] || '/';
     return {
-      bgStyle,
       colors,
       styles: styles?.[mode] || styles.normal,
       bgGradient,

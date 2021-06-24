@@ -15,7 +15,8 @@
           "mode": {
             "label": "Tipo",
             "widget": "select",
-            "options": ["normal", "invert"]
+            "options": ["normal", "invert"],
+            "default": "normal"
           }
         },
         "card": {
@@ -23,6 +24,7 @@
             "label": "Forma de foto",
             "name": "shape",
             "widget": "select",
+            "default": "square",
             "options": [
               { "label": "Cuadrado", "value": "square" },
               { "label": "Circulo", "value": "circle" },
